@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Sticky Header & Footer</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      height: 100%;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      background-color: #007bff;
+      color: white;
+      padding: 20px;
+      text-align: center;
+      z-index: 1000;
+    }
+
+    main {
+      flex: 1;
+      padding: 30px;
+      background-color: #f9f9f9;
+      overflow-y: auto;
+    }
+
+    footer {
+      background-color: #222;
+      color: white;
+      text-align: center;
+      padding: 15px;
+    }
+
+    .content {
+      max-width: 800px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Sticky Header</h1>
+  </header>
+
+  <main>
+    <div class="content">
+      <h2>Welcome</h2>
+      <p>This is a simple page with a sticky header and a footer that stays at the bottom of the page.</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent at turpis ac tellus ultrices blandit.</p>
+      <p>Scroll down to see how the header sticks to the top while the footer remains at the bottom.</p>
+      <p style="margin-top: 600px;">This extra space is just for scrolling demo purposes.</p>
+    </div>
+  </main>
+
+  <footer>
+    <p>© 2025 Your Website. All rights reserved Yogesh Chauhan.</p>
+  </footer>
+
+</body>
+</html>

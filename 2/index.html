@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pricing Table</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    body {
+      background-color: #f5f5f5;
+      padding: 40px;
+    }
+
+    .pricing-container {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .pricing-card {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      width: 300px;
+      padding: 30px;
+      text-align: center;
+      transition: transform 0.3s ease;
+    }
+
+    .pricing-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .pricing-title {
+      font-size: 24px;
+      margin-bottom: 10px;
+      color: #333;
+    }
+
+    .price {
+      font-size: 36px;
+      color: #007bff;
+      margin: 20px 0;
+    }
+
+    .features {
+      list-style: none;
+      margin-bottom: 20px;
+    }
+
+    .features li {
+      margin: 10px 0;
+      color: #555;
+    }
+
+    .btn {
+      background-color: #007bff;
+      color: white;
+      padding: 12px 25px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      text-decoration: none;
+      font-weight: bold;
+      display: inline-block;
+    }
+
+    .highlight {
+      border: 2px solid #007bff;
+    }
+  </style>
+</head>
+<body>
+
+  <h1 style="text-align:center; margin-bottom: 40px;">Our Pricing Plans</h1>
+
+  <div class="pricing-container">
+    <!-- Basic Plan -->
+    <div class="pricing-card">
+      <div class="pricing-title">Basic</div>
+      <div class="price">$9/mo</div>
+      <ul class="features">
+        <li>1 Project</li>
+        <li>5 GB Storage</li>
+        <li>Email Support</li>
+      </ul>
+      <a href="#" class="btn">Choose</a>
+    </div>
+
+    <!-- Pro Plan -->
+    <div class="pricing-card highlight">
+      <div class="pricing-title">Pro</div>
+      <div class="price">$29/mo</div>
+      <ul class="features">
+        <li>10 Projects</li>
+        <li>50 GB Storage</li>
+        <li>Priority Email Support</li>
+      </ul>
+      <a href="#" class="btn">Choose</a>
+    </div>
+
+    <!-- Enterprise Plan -->
+    <div class="pricing-card">
+      <div class="pricing-title">Enterprise</div>
+      <div class="price">$99/mo</div>
+      <ul class="features">
+        <li>Unlimited Projects</li>
+        <li>500 GB Storage</li>
+        <li>Phone & Email Support</li>
+      </ul>
+      <a href="#" class="btn">Choose</a>
+    </div>
+  </div>
+
+</body>
+</html>

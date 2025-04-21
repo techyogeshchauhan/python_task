@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Favorite Movies</title>
+    <style>
+        /* Global Styles */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+        }
+        
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #2c3e50;
+            font-size: 2.5em;
+        }
+        
+        /* Movie List Container */
+        .movie-list {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+        }
+        
+        /* Movie Card Styles */
+        .movie-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .movie-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .movie-poster {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+        }
+        
+        .movie-info {
+            padding: 20px;
+        }
+        
+        .movie-title {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+            color: #2c3e50;
+        }
+        
+        .movie-year {
+            display: inline-block;
+            background-color: #3498db;
+            color: white;
+            padding: 3px 8px;
+            border-radius: 3px;
+            font-size: 0.9em;
+            margin-bottom: 10px;
+        }
+        
+        .movie-description {
+            color: #7f8c8d;
+            margin-bottom: 15px;
+        }
+        
+        .movie-rating {
+            font-weight: bold;
+            color: #f39c12;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .movie-list {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>My Favorite Movies</h1>
+    
+    <div class="movie-list">
+        <!-- Movie 1 -->
+        <div class="movie-card">
+            <img src="https://m.media-amazon.com/images/M/MV5BMDFkYTc0MGEtZmNhMC00ZDIzLWFmNTEtODM1ZmRlYWMwMWFmXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_.jpg" alt="The Shawshank Redemption" class="movie-poster">
+            <div class="movie-info">
+                <h2 class="movie-title">The Shawshank Redemption</h2>
+                <span class="movie-year">1994</span>
+                <p class="movie-description">Two imprisoned men bond over a number of years, finding solace and eventual redemption through acts of common decency.</p>
+                <p class="movie-rating">Rating: 9.3/10</p>
+            </div>
+        </div>
+        
+        <!-- Movie 2 -->
+        <div class="movie-card">
+            <img src="https://m.media-amazon.com/images/M/MV5BM2MyNjYxNmUtYTAwNi00MTYxLWJmNWYtYzZlODY3ZTk3OTFlXkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_.jpg" alt="The Godfather" class="movie-poster">
+            <div class="movie-info">
+                <h2 class="movie-title">The Godfather</h2>
+                <span class="movie-year">1972</span>
+                <p class="movie-description">The aging patriarch of an organized crime dynasty transfers control of his clandestine empire to his reluctant son.</p>
+                <p class="movie-rating">Rating: 9.2/10</p>
+            </div>
+        </div>
+        
+        <!-- Movie 3 -->
+        <div class="movie-card">
+            <img src="https://m.media-amazon.com/images/M/MV5BMTMxNTMwODM0NF5BMl5BanBnXkFtZTcwODAyMTk2Mw@@._V1_.jpg" alt="The Dark Knight" class="movie-poster">
+            <div class="movie-info">
+                <h2 class="movie-title">The Dark Knight</h2>
+                <span class="movie-year">2008</span>
+                <p class="movie-description">When the menace known as the Joker wreaks havoc and chaos on the people of Gotham, Batman must accept one of the greatest psychological and physical tests of his ability to fight injustice.</p>
+                <p class="movie-rating">Rating: 9.0/10</p>
+            </div>
+        </div>
+        
+        <!-- Movie 4 -->
+        <div class="movie-card">
+            <img src="https://m.media-amazon.com/images/M/MV5BMWU4N2FjNzYtNTVkNC00NzQ0LTg0MjAtYTJlMjFhNGUxZDFmXkEyXkFqcGdeQXVyNjc1NTYyMjg@._V1_.jpg" alt="12 Angry Men" class="movie-poster">
+            <div class="movie-info">
+                <h2 class="movie-title">12 Angry Men</h2>
+                <span class="movie-year">1957</span>
+                <p class="movie-description">A jury holdout attempts to prevent a miscarriage of justice by forcing his colleagues to reconsider the evidence.</p>
+                <p class="movie-rating">Rating: 9.0/10</p>
+            </div>
+        </div>
+        
+        <!-- Movie 5 -->
+        <div class="movie-card">
+            <img src="https://m.media-amazon.com/images/M/MV5BNzA5ZDNlZWMtM2NhNS00NDJjLTk4NDItYTRmY2EwMWZlMTY3XkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_.jpg" alt="The Lord of the Rings: The Return of the King" class="movie-poster">
+            <div class="movie-info">
+                <h2 class="movie-title">The Lord of the Rings: The Return of the King</h2>
+                <span class="movie-year">2003</span>
+                <p class="movie-description">Gandalf and Aragorn lead the World of Men against Sauron's army to draw his gaze from Frodo and Sam as they approach Mount Doom with the One Ring.</p>
+                <p class="movie-rating">Rating: 9.0/10</p>
+            </div>
+        </div>
+        
+        <!-- Movie 6 -->
+        <div class="movie-card">
+            <img src="https://m.media-amazon.com/images/M/MV5BNDE4OTMxMTctNmRhYy00NWE2LTg3YzItYTk3M2UwOTU5Njg4XkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_.jpg" alt="Schindler's List" class="movie-poster">
+            <div class="movie-info">
+                <h2 class="movie-title">Schindler's List</h2>
+                <span class="movie-year">1993</span>
+                <p class="movie-description">In German-occupied Poland during World War II, industrialist Oskar Schindler gradually becomes concerned for his Jewish workforce after witnessing their persecution by the Nazis.</p>
+                <p class="movie-rating">Rating: 9.0/10</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
