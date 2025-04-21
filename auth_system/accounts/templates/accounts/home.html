@@ -1,0 +1,19 @@
+{% extends 'accounts/base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<div class="jumbotron">
+    <h1 class="display-4">Welcome to Auth System</h1>
+    <p class="lead">This is a simple authentication system built with Django.</p>
+    <hr class="my-4">
+    {% if user.is_authenticated %}
+        <p>You are logged in as {{ user.username }}</p>
+        <a class="btn btn-primary btn-lg" href="{% url 'profile' %}" role="button">View Profile</a>
+    {% else %}
+        <p>Please login or signup to continue.</p>
+        <a class="btn btn-primary btn-lg" href="{% url 'login' %}" role="button">Login</a>
+        <a class="btn btn-success btn-lg" href="{% url 'signup' %}" role="button">Sign Up</a>
+    {% endif %}
+</div>
+{% endblock %} 

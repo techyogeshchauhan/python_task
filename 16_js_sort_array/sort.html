@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Array Sorting Example</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .input-group {
+            margin-bottom: 20px;
+        }
+        input[type="number"] {
+            padding: 8px;
+            width: 200px;
+            margin-right: 10px;
+        }
+        button {
+            padding: 8px 15px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        #numbersList {
+            margin: 20px 0;
+            padding: 10px;
+            background-color: #f5f5f5;
+            border-radius: 5px;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #e9f7ef;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Array Sorting Example</h1>
+        
+        <div class="input-group">
+            <input type="number" id="numberInput" placeholder="Enter a number">
+            <button onclick="addNumber()">Add Number</button>
+        </div>
+
+        <div id="numbersList">
+            <p>Numbers entered: <span id="currentNumbers">[]</span></p>
+        </div>
+
+        <button onclick="sortNumbers()">Sort Numbers (Descending)</button>
+
+        <div id="output" class="result"></div>
+    </div>
+
+        <script>
+            let numbers = [];
+
+            function addNumber() {
+                const input = document.getElementById('numberInput');
+                const number = parseFloat(input.value);
+                
+                if (!isNaN(number)) {
+                    numbers.push(number);
+                    document.getElementById('currentNumbers').textContent = `[${numbers.join(', ')}]`;
+                    input.value = ''; // Clear the input
+                    input.focus(); // Focus back on the input
+                } else {
+                    alert('Please enter a valid number');
+                }
+            }
+
+            function sortDescending(arr) {
+                return [...arr].sort((a, b) => b - a);
+            }
+
+            function sortNumbers() {
+                if (numbers.length === 0) {
+                    alert('Please add some numbers first');
+                    return;
+                }
+
+                const sortedNumbers = sortDescending(numbers);
+                const outputDiv = document.getElementById('output');
+                
+                outputDiv.innerHTML = `
+                    <h3>Results:</h3>
+                    <p><strong>Original array:</strong> [${numbers.join(', ')}]</p>
+                    <p><strong>Sorted array (descending):</strong> [${sortedNumbers.join(', ')}]</p>
+                `;
+
+                // Also log to console
+                console.log('Original array:', numbers);
+                console.log('Sorted array (descending):', sortedNumbers);
+            }
+
+            // Allow Enter key to add numbers
+            document.getElementById('numberInput').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    addNumber();
+                }
+            });
+        </script>
+</body>
+</html> 

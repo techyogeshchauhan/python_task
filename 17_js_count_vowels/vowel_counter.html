@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Vowel Counter</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f0f0f0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+        .input-group {
+            margin-bottom: 20px;
+        }
+        textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            resize: vertical;
+            min-height: 100px;
+            margin-bottom: 10px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #e9f7ef;
+            border-radius: 4px;
+        }
+        .vowel-count {
+            font-size: 24px;
+            color: #2e7d32;
+            font-weight: bold;
+        }
+        .vowel-details {
+            margin-top: 10px;
+        }
+        .vowel-details p {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Vowel Counter</h1>
+        
+        <div class="input-group">
+            <textarea id="textInput" placeholder="Enter your text here..."></textarea>
+            <button onclick="countVowels()">Count Vowels</button>
+        </div>
+
+        <div id="output" class="result" style="display: none;">
+            <h3>Results:</h3>
+            <p>Total vowels: <span id="totalVowels" class="vowel-count">0</span></p>
+            <div class="vowel-details">
+                <p>Individual vowel counts:</p>
+                <p>A: <span id="countA">0</span></p>
+                <p>E: <span id="countE">0</span></p>
+                <p>I: <span id="countI">0</span></p>
+                <p>O: <span id="countO">0</span></p>
+                <p>U: <span id="countU">0</span></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function countVowels() {
+            const text = document.getElementById('textInput').value.toLowerCase();
+            const vowels = {
+                'a': 0,
+                'e': 0,
+                'i': 0,
+                'o': 0,
+                'u': 0
+            };
+            let total = 0;
+
+            // Count each vowel
+            for (let char of text) {
+                if (vowels.hasOwnProperty(char)) {
+                    vowels[char]++;
+                    total++;
+                }
+            }
+
+            // Update the display
+            document.getElementById('totalVowels').textContent = total;
+            document.getElementById('countA').textContent = vowels['a'];
+            document.getElementById('countE').textContent = vowels['e'];
+            document.getElementById('countI').textContent = vowels['i'];
+            document.getElementById('countO').textContent = vowels['o'];
+            document.getElementById('countU').textContent = vowels['u'];
+
+            // Show the results
+            document.getElementById('output').style.display = 'block';
+        }
+
+        // Allow Enter key to trigger counting (but don't submit the form)
+        document.getElementById('textInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                countVowels();
+            }
+        });
+    </script>
+</body>
+</html> 
