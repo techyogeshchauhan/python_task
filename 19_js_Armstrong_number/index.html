@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Armstrong Number Checker</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+        .input-group {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        input[type="number"] {
+            width: 200px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            margin-right: 10px;
+            font-size: 16px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #f9f9f9;
+            border-left: 4px solid #4CAF50;
+            text-align: center;
+        }
+        .explanation {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #f0f0f0;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Armstrong Number Checker</h1>
+        <div class="input-group">
+            <input type="number" id="numberInput" placeholder="Enter a number" min="0">
+            <button onclick="checkArmstrong()">Check</button>
+        </div>
+        <div class="result" id="result">
+            <div id="output"></div>
+        </div>
+        <div class="explanation">
+            <h3>What is an Armstrong Number?</h3>
+            <p>An Armstrong number is a number that is equal to the sum of its own digits each raised to the power of the number of digits.</p>
+            <p>For example: 153 is an Armstrong number because 1³ + 5³ + 3³ = 1 + 125 + 27 = 153</p>
+        </div>
+    </div>
+
+    <script>
+        function checkArmstrong() {
+            const number = document.getElementById('numberInput').value;
+            const numStr = number.toString();
+            const numDigits = numStr.length;
+            let sum = 0;
+
+            for (let digit of numStr) {
+                sum += Math.pow(parseInt(digit), numDigits);
+            }
+
+            const isArmstrong = sum === parseInt(number);
+            const output = document.getElementById('output');
+            
+            if (isArmstrong) {
+                output.innerHTML = `<strong>${number}</strong> is an Armstrong number!<br>
+                                   ${numStr.split('').join('^' + numDigits + ' + ')}^${numDigits} = ${sum}`;
+            } else {
+                output.innerHTML = `<strong>${number}</strong> is not an Armstrong number.<br>
+                                   ${numStr.split('').join('^' + numDigits + ' + ')}^${numDigits} = ${sum} ≠ ${number}`;
+            }
+        }
+    </script>
+</body>
+</html> 

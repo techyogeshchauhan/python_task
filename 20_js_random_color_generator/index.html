@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Color Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.5s ease;
+        }
+        .container {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        h1 {
+            margin-bottom: 2rem;
+            color: #333;
+        }
+        .color-info {
+            margin: 1rem 0;
+            padding: 1rem;
+            border-radius: 5px;
+            background-color: #f8f9fa;
+        }
+        .color-box {
+            width: 200px;
+            height: 200px;
+            margin: 1rem auto;
+            border-radius: 10px;
+            border: 2px solid #333;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 1rem;
+            transition: transform 0.2s ease;
+        }
+        button:hover {
+            background-color: #45a049;
+            transform: scale(1.05);
+        }
+        .color-value {
+            font-family: monospace;
+            font-size: 1.2rem;
+            margin: 0.5rem 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Random Color Generator</h1>
+        <div class="color-box" id="colorBox"></div>
+        <div class="color-info">
+            <p>Current Color:</p>
+            <div class="color-value" id="hexValue"></div>
+            <div class="color-value" id="rgbValue"></div>
+        </div>
+        <button onclick="generateRandomColor()">Generate New Color</button>
+    </div>
+
+    <script>
+        function generateRandomColor() {
+            // Generate random RGB values
+            const r = Math.floor(Math.random() * 256);
+            const g = Math.floor(Math.random() * 256);
+            const b = Math.floor(Math.random() * 256);
+            
+            // Convert RGB to Hex
+            const hex = '#' + 
+                r.toString(16).padStart(2, '0') + 
+                g.toString(16).padStart(2, '0') + 
+                b.toString(16).padStart(2, '0');
+            
+            // Apply the color to the background
+            document.body.style.backgroundColor = `rgb(${r}, ${g}, ${b})`;
+            
+            // Update the color box
+            document.getElementById('colorBox').style.backgroundColor = `rgb(${r}, ${g}, ${b})`;
+            
+            // Update the color information
+            document.getElementById('hexValue').textContent = `HEX: ${hex.toUpperCase()}`;
+            document.getElementById('rgbValue').textContent = `RGB: rgb(${r}, ${g}, ${b})`;
+        }
+
+        // Generate initial color when page loads
+        generateRandomColor();
+    </script>
+</body>
+</html> 

@@ -70,6 +70,7 @@
         <div class="input-group">
             <textarea id="textInput" placeholder="Enter your text here..."></textarea>
             <button onclick="countVowels()">Count Vowels</button>
+            <button onclick="replaceSpaces()">Replace Spaces</button>
         </div>
 
         <div id="output" class="result" style="display: none;">
@@ -87,6 +88,12 @@
     </div>
 
     <script>
+        function replaceSpaces() {
+            const text = document.getElementById('textInput').value;
+            const result = text.replace(/\s+/g, '-');
+            document.getElementById('textInput').value = result;
+        }
+
         function countVowels() {
             const text = document.getElementById('textInput').value.toLowerCase();
             const vowels = {
