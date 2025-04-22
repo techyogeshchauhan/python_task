@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News Hub</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --text-color: #2c3e50;
+            --light-bg: #f8f9fa;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--text-color);
+            background-color: var(--light-bg);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .navbar {
+            background-color: var(--primary-color);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .navbar-brand {
+            font-weight: bold;
+            color: white !important;
+        }
+
+        .search-container {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .search-input {
+            border-radius: 25px;
+            padding-left: 20px;
+            border: 2px solid #e0e0e0;
+        }
+
+        .search-input:focus {
+            border-color: var(--secondary-color);
+            box-shadow: none;
+        }
+
+        .categories {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 2rem;
+        }
+
+        .category-badge {
+            cursor: pointer;
+            transition: all 0.3s;
+            padding: 8px 16px;
+            border-radius: 20px;
+        }
+
+        .category-badge:hover {
+            transform: translateY(-2px);
+            background-color: var(--secondary-color);
+        }
+
+        #news-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            justify-content: center;
+            padding: 1rem;
+        }
+
+        .news-card {
+            flex: 1 1 300px;
+            max-width: 350px;
+            min-width: 280px;
+            transition: all 0.3s ease;
+            border: none;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            background: white;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .news-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+        }
+
+        .news-image-container {
+            position: relative;
+            width: 100%;
+            padding-top: 56.25%; /* 16:9 Aspect Ratio */
+            overflow: hidden;
+        }
+
+        .news-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+
+        .news-card:hover .news-image {
+            transform: scale(1.05);
+        }
+
+        .card-body {
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+            padding: 1.25rem;
+        }
+
+        .news-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin: 0 0 1rem 0;
+            color: var(--primary-color);
+            line-height: 1.4;
+        }
+
+        .news-description {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+            flex-grow: 1;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .news-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem 0;
+            border-top: 1px solid #eee;
+            font-size: 0.9rem;
+            margin-top: auto;
+        }
+
+        .news-source {
+            color: var(--secondary-color);
+            font-weight: 500;
+        }
+
+        .news-date {
+            color: #888;
+        }
+
+        .read-more {
+            color: var(--secondary-color);
+            text-decoration: none;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            margin-top: 0.5rem;
+        }
+
+        .read-more:hover {
+            color: var(--primary-color);
+        }
+
+        .read-more i {
+            margin-left: 5px;
+            transition: transform 0.3s;
+        }
+
+        .read-more:hover i {
+            transform: translateX(3px);
+        }
+
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid var(--secondary-color);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .no-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+
+        .no-results {
+            text-align: center;
+            padding: 2rem;
+            color: #666;
+            display: none;
+        }
+
+        .no-results i {
+            font-size: 3rem;
+            color: #ddd;
+            margin-bottom: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .news-card {
+                flex: 1 1 100%;
+                max-width: 100%;
+            }
+            
+            .categories {
+                gap: 5px;
+            }
+            
+            .category-badge {
+                padding: 6px 12px;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark mb-4">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="fas fa-newspaper me-2"></i>News Hub
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Categories</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Saved</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container flex-grow-1">
+        <div class="search-container mb-4">
+            <div class="input-group">
+                <input type="text" class="form-control search-input" placeholder="Search news...">
+                <button class="btn btn-primary" type="button">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="categories">
+            <span class="badge bg-primary category-badge">All</span>
+            <span class="badge bg-secondary category-badge">Business</span>
+            <span class="badge bg-secondary category-badge">Technology</span>
+            <span class="badge bg-secondary category-badge">Sports</span>
+            <span class="badge bg-secondary category-badge">Entertainment</span>
+            <span class="badge bg-secondary category-badge">Science</span>
+        </div>
+
+        <div class="loading">
+            <div class="spinner"></div>
+            <p class="mt-2">Loading news...</p>
+        </div>
+
+        <div class="no-results">
+            <i class="fas fa-newspaper"></i>
+            <h3>No articles found</h3>
+            <p>Try adjusting your search or filters</p>
+        </div>
+
+        <div class="row" id="news-container">
+            {% for article in articles %}
+            <div class="col-md-4">
+                <div class="news-card">
+                    <div class="news-image-container">
+                        {% if article.image_url %}
+                        <img src="{{ article.image_url }}" class="news-image" alt="{{ article.title }}">
+                        {% else %}
+                        <div class="no-image">
+                            <i class="fas fa-newspaper fa-3x"></i>
+                        </div>
+                        {% endif %}
+                    </div>
+                    <div class="card-body">
+                        <h5 class="news-title">{{ article.title }}</h5>
+                        <p class="news-description">{{ article.description }}</p>
+                        <div class="news-meta">
+                            <span class="news-source">{{ article.source }}</span>
+                            <span class="news-date">{{ article.published_date }}</span>
+                        </div>
+                        <a href="{{ article.url }}" class="read-more" target="_blank">
+                            Read more <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const loading = document.querySelector('.loading');
+            const newsContainer = document.getElementById('news-container');
+            const noResults = document.querySelector('.no-results');
+            
+            // Simulate loading state
+            loading.style.display = 'block';
+            newsContainer.style.opacity = '0.5';
+            
+            setTimeout(() => {
+                loading.style.display = 'none';
+                newsContainer.style.opacity = '1';
+                
+                // Show no results message if no articles
+                if (newsContainer.children.length === 0) {
+                    noResults.style.display = 'block';
+                }
+            }, 1000);
+
+            // Category filter functionality
+            const categories = document.querySelectorAll('.category-badge');
+            categories.forEach(category => {
+                category.addEventListener('click', function() {
+                    categories.forEach(c => c.classList.remove('bg-primary'));
+                    categories.forEach(c => c.classList.add('bg-secondary'));
+                    this.classList.remove('bg-secondary');
+                    this.classList.add('bg-primary');
+                    
+                    // Here you would typically make an API call to filter articles
+                    // For now, we'll just show/hide the no results message
+                    loading.style.display = 'block';
+                    newsContainer.style.opacity = '0.5';
+                    
+                    setTimeout(() => {
+                        loading.style.display = 'none';
+                        newsContainer.style.opacity = '1';
+                        noResults.style.display = newsContainer.children.length === 0 ? 'block' : 'none';
+                    }, 500);
+                });
+            });
+
+            // Search functionality
+            const searchInput = document.querySelector('.search-input');
+            const searchButton = document.querySelector('.btn-primary');
+            
+            function performSearch() {
+                const searchTerm = searchInput.value.toLowerCase();
+                const cards = document.querySelectorAll('.news-card');
+                let visibleCount = 0;
+                
+                cards.forEach(card => {
+                    const title = card.querySelector('.news-title').textContent.toLowerCase();
+                    const description = card.querySelector('.news-description').textContent.toLowerCase();
+                    
+                    if (title.includes(searchTerm) || description.includes(searchTerm)) {
+                        card.style.display = '';
+                        visibleCount++;
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+                
+                noResults.style.display = visibleCount === 0 ? 'block' : 'none';
+            }
+            
+            searchButton.addEventListener('click', performSearch);
+            searchInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    performSearch();
+                }
+            });
+        });
+    </script>
+</body>
+</html> 

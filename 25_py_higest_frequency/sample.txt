@@ -1,0 +1,7 @@
+This is a sample text file.
+It contains multiple words, some of which are repeated.
+The word "the" appears multiple times in this text.
+The word "the" is the most common word in English.
+This text is just for testing the word frequency function.
+The function should count how many times each word appears.
+The word "the" should have the highest frequency in this text. 
