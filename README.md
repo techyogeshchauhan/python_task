@@ -69,18 +69,16 @@ I've completed these 40 programming tasks covering web development, Python, Java
 - Tools: Git, [others you used]
 
 ## 📂 Repository Structure
-project-root/
-│
-├── ai-chatbot/ # Major AI Chatbot project
-├── tasks/ # All 40 tasks organized by category
-│ ├── web-dev/
-│ ├── flask/
-│ ├── django/
-│ ├── javascript/
-│ └── python/
-├── README.md # This file
-└── .gitignore
 
+- **ai-chatbot/** - Major AI Chatbot project
+- **tasks/** - All 40 tasks organized by category
+  - **web-dev/** - HTML/CSS/JavaScript tasks (1-6)
+  - **flask/** - Flask applications (7-10, 27-30, 32, 37)
+  - **django/** - Django projects (11-15, 29, 31, 33, 35, 40)
+  - **javascript/** - JavaScript challenges (16-20)
+  - **python/** - Python programs (21-26, 34, 36, 38-39)
+- **README.md** - This file
+- **.gitignore**
 
 
 ## � How to Use
