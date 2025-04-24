@@ -69,3 +69,32 @@ I've completed these 40 programming tasks covering web development, Python, Java
 - Tools: Git, [others you used]
 
 ## 📂 Repository Structure
+project-root/
+│
+├── ai-chatbot/ # Major AI Chatbot project
+├── tasks/ # All 40 tasks organized by category
+│ ├── web-dev/
+│ ├── flask/
+│ ├── django/
+│ ├── javascript/
+│ └── python/
+├── README.md # This file
+└── .gitignore
+
+
+
+## � How to Use
+1. Clone the repository
+   ```bash
+   git clone https://github.com/your-username/your-repo.git
+
+## 📝 Notes
+Each task is self-contained with its own implementation
+
+The AI chatbot represents the culmination of these learning experiences
+
+## 🤝 Contributing
+While this is primarily a personal learning repository, suggestions and constructive feedback are welcome!
+
+## 📜 License
+MIT License unless otherwise specified in individual projects
